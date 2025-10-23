@@ -1,6 +1,6 @@
+import { AtomProps } from "@/types";
 import React from "react";
-interface BtnProps {
-  children: React.ReactNode;
+interface BtnProps extends AtomProps {
   onClick?: () => void;
 }
 

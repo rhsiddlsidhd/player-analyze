@@ -15,3 +15,7 @@ export interface Ranking {
   player: string;
   points: string;
 }
+
+export interface AtomProps {
+  children: React.ReactNode;
+}

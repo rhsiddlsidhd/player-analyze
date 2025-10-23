@@ -1,6 +1,5 @@
 import {
   ColorKey,
-  lineClamps,
   textColors,
   TextSizeKey,
   textSizes,
@@ -8,32 +7,33 @@ import {
 import { AtomProps } from "@/types";
 import clsx from "clsx";
 
-interface TextProps extends AtomProps {
+interface BadgeProps extends AtomProps {
   className?: string;
-  lineClamp?: number;
   textColor?: ColorKey;
   textSize?: TextSizeKey;
+  bgColor?: ColorKey;
 }
 
-const Text = ({
+const Badge = ({
   children,
-  lineClamp,
   className,
   textColor,
   textSize,
-}: TextProps) => {
+  bgColor,
+}: BadgeProps) => {
   return (
-    <p
+    <aside
       className={clsx(
+        "rounded-full flex justify-center items-center px-2 py-1 ",
         className,
-        lineClamp && lineClamps[lineClamp],
         textColor && textColors[textColor],
-        textSize && textSizes[textSize]
+        textSize && textSizes[textSize],
+        bgColor && textColors[bgColor]
       )}
     >
       {children}
-    </p>
+    </aside>
   );
 };
 
-export default Text;
+export default Badge;

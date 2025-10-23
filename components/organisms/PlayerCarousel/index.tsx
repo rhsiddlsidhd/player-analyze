@@ -10,10 +10,10 @@ import Text from "@/components/atoms/Text";
 import { Player } from "@/types";
 
 import Avatar from "@/components/molecules/Avatar";
-import useSWR from "swr";
-import { fetcher } from "@/lib/swr";
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
+import Badge from "@/components/atoms/Badge";
+import useWikidataImage from "@/hooks/useWikidataImage";
 
 const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
   const queryString = useMemo(
@@ -23,10 +23,7 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
 
   const navigate = useRouter();
 
-  const { data, isLoading } = useSWR(
-    `/api/wikidata/image?q=${queryString}`,
-    fetcher
-  );
+  const { data, isLoading } = useWikidataImage(queryString);
 
   return (
     <Swiper
@@ -57,9 +54,9 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
                 {item.name_first} {item.name_last}
               </Text>
 
-              <Text className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs  flex justify-center items-center font-medium">
+              <Badge textColor="blue" textSize="xs" className="bg-blue-100">
                 {item.ioc}
-              </Text>
+              </Badge>
             </div>
           </div>
 
