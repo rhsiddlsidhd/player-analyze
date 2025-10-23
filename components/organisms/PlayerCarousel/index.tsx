@@ -13,6 +13,7 @@ import Avatar from "@/components/molecules/Avatar";
 import useSWR from "swr";
 import { fetcher } from "@/lib/swr";
 import { useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
   const queryString = useMemo(
@@ -20,29 +21,11 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
     [playerData]
   );
 
+  const navigate = useRouter();
+
   const { data, isLoading } = useSWR(
     `/api/wikidata/image?q=${queryString}`,
-    fetcher,
-    {
-      // 캐싱 관련 설정
-      dedupingInterval: 60 * 1000, // 1분간 중복 요청 방지
-      revalidateOnFocus: false, // 포커스 시 재검증 비활성화
-      revalidateOnReconnect: false, // 재연결 시 재검증 비활성화
-      revalidateIfStale: false, // stale 데이터여도 재검증 안함
-      refreshInterval: 0, // 자동 갱신 비활성화
-      errorRetryCount: 2, // 에러 시 재시도 횟수
-      errorRetryInterval: 1000, // 재시도 간격 (1초)
-
-      // 이미지 URL은 자주 변하지 않으므로
-      focusThrottleInterval: 60 * 1000, // 포커스 스로틀링
-
-      onSuccess: (data) => {
-        console.log("✅ SWR Cache HIT:", queryString);
-      },
-      onError: (error) => {
-        console.log("❌ SWR Error:", error);
-      },
-    }
+    fetcher
   );
 
   return (
@@ -113,7 +96,9 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
               </div>
             </div>
 
-            <Btn>더보기</Btn>
+            <Btn onClick={() => navigate.push(`/dashboard/${item.player_id}`)}>
+              더보기
+            </Btn>
           </div>
         </SwiperSlide>
       ))}
