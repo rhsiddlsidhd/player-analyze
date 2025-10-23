@@ -4,6 +4,7 @@ import { Player } from "@/types";
 
 const playerMap: Map<Player["player_id"], Player> = new Map();
 
+// wikidata_id를 가지고 ImageUrl key value를 추가
 const playersData: Player[] = JSON.parse(fs.readFileSync(playerPath, "utf-8"));
 
 for (const data of playersData) {
