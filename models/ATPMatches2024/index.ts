@@ -1,7 +1,13 @@
-import { matches2024Path } from "@/lib/config";
+import basePath from "@/lib/config";
 import fs from "fs";
-const matches2024ATPData = JSON.parse(
-  fs.readFileSync(matches2024Path, "utf-8")
-);
-
-export default matches2024ATPData;
+import path from "path";
+export const getMatchesATPData = (year: number) => {
+  try {
+    const dataPath = path.join(basePath, `atp_matches_${year}.json`);
+    const matchesData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+    return matchesData;
+  } catch (error) {
+    console.error(`❌ Failed to load data for year ${year}:`, error);
+    return null;
+  }
+};

@@ -5,7 +5,7 @@ export type ColorKey =
   | "blue"
   | "green"
   | "translucent";
-export type TextSizeKey =
+export type SizeKey =
   | "xs"
   | "sm"
   | "base"
@@ -42,7 +42,7 @@ export const lineClamps: Record<number, string> = {
   5: "line-clamp-5",
 };
 
-export const textSizes: Record<TextSizeKey, string> = {
+export const textSizes: Record<SizeKey, string> = {
   xs: "text-xs",
   sm: "text-sm",
   base: "text-base",

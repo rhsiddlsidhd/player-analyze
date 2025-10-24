@@ -5,9 +5,7 @@ export const GET = async (req: NextRequest) => {
   try {
     const q = req.nextUrl.searchParams.get("q");
 
-    if (!q) return NextResponse.json({ data: null }, { status: 200 });
-
-    const ids = q.split(",");
+    if (!q) return NextResponse.json({ image: null }, { status: 200 });
 
     const baseURL = "https://www.wikidata.org/wiki/Special:EntityData";
     const options = {
@@ -16,26 +14,16 @@ export const GET = async (req: NextRequest) => {
       },
     };
 
-    const results = await Promise.all(
-      ids.map(async (id) => {
-        if (!id) return null;
-        try {
-          const url = `${baseURL}/${id}.json`;
-          const res = await fetch(url, {
-            ...options,
-            next: { revalidate: 60 * 60 * 24 },
-          });
-          const { entities } = await res.json();
-          const image =
-            entities[id]?.claims?.P18?.[0]?.mainsnak?.datavalue?.value;
-          return image;
-        } catch {
-          return null;
-        }
-      })
-    );
+    const res = await fetch(`${baseURL}/${q}.json`, {
+      ...options,
+      next: { revalidate: 60 * 60 * 24 },
+    });
+    if (!res.ok)
+      throw new Error(`Failed to fetch data from Wikidata: ${res.statusText}`);
+    const { entities } = await res.json();
+    const image = entities[q]?.claims?.P18?.[0]?.mainsnak?.datavalue?.value;
 
-    return NextResponse.json({ data: results }, { status: 200 });
+    return NextResponse.json({ image }, { status: 200 });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     console.error(message);

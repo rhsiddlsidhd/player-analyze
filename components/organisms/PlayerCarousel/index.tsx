@@ -16,14 +16,7 @@ import Badge from "@/components/atoms/Badge";
 import useWikidataImage from "@/hooks/useWikidataImage";
 
 const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
-  const queryString = useMemo(
-    () => playerData.map((p) => p.wikidata_id).join(","),
-    [playerData]
-  );
-
   const navigate = useRouter();
-
-  const { data, isLoading } = useWikidataImage(queryString);
 
   return (
     <Swiper
@@ -61,16 +54,7 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
           </div>
 
           <div className="flex justify-center p-2 bg-gray-50">
-            <Avatar
-              loading={isLoading || !data}
-              source={
-                data?.data[i]
-                  ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(
-                      data.data[i]
-                    )}`
-                  : ""
-              }
-            />
+            <Avatar wikidata_id={item.wikidata_id ?? ""} />
           </div>
 
           <div className="p-4 space-y-3">

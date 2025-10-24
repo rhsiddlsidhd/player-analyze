@@ -1,8 +1,8 @@
 import {
   ColorKey,
   lineClamps,
+  SizeKey,
   textColors,
-  TextSizeKey,
   textSizes,
 } from "@/styles/variants";
 import { AtomProps } from "@/types";
@@ -12,7 +12,7 @@ interface TextProps extends AtomProps {
   className?: string;
   lineClamp?: number;
   textColor?: ColorKey;
-  textSize?: TextSizeKey;
+  textSize?: SizeKey;
 }
 
 const Text = ({
