@@ -1,5 +1,6 @@
 "use client";
 import Img from "@/components/atoms/Img";
+import Spinner from "@/components/atoms/Spinner";
 import useWikidataImage from "@/hooks/useWikidataImage";
 import { SizeKey } from "@/styles/variants";
 import clsx from "clsx";
@@ -25,28 +26,26 @@ const Avatar = ({
 }) => {
   const { data, isLoading } = useWikidataImage(wikidata_id);
 
+  if (isLoading || !data) {
+    return <Spinner />;
+  }
+
   return (
     <div
       className={clsx(
-        "relative aspect-square border-2  overflow-hidden rounded-full",
-        size ? avatarSizes[size] : "w-24"
+        "relative aspect-square overflow-hidden rounded-full border-2",
+        size ? avatarSizes[size] : "w-24",
       )}
     >
-      {isLoading || !data ? (
-        <div className="absolute inset-0 w-full h-full bg-gray-200 flex items-center justify-center text-gray-400 text-xs">
-          로딩중
-        </div>
-      ) : (
-        <Img
-          src={
-            data.image
-              ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(
-                  data.image
-                )}`
-              : ""
-          }
-        />
-      )}
+      <Img
+        src={
+          data.image
+            ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(
+                data.image,
+              )}`
+            : ""
+        }
+      />
     </div>
   );
 };

@@ -18,7 +18,7 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
 
   const { data, isLoading } = useSWR(
     `/api/atp/matches?y=${year}&u=${pieData.player_id}`,
-    fetcher
+    fetcher,
   );
 
   const chartData = useMemo(() => {
@@ -30,11 +30,11 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
     if (totalMatches === 0) return [];
 
     const wins = matches.filter(
-      (match: any) => match.winner_id === pieData.player_id
+      (match: any) => match.winner_id === pieData.player_id,
     );
 
     const losses = matches.filter(
-      (match: any) => match.loser_id === pieData.player_id
+      (match: any) => match.loser_id === pieData.player_id,
     );
 
     return [
@@ -62,7 +62,7 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-gray-900 text-white px-2 py-1 rounded text-xs shadow-lg">
+        <div className="rounded bg-gray-900 px-2 py-1 text-xs text-white shadow-lg">
           <div className="font-medium">{data.name}</div>
           <div className="text-gray-300">
             {data.value} ({data.percent}%)
@@ -73,10 +73,14 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
     return null;
   };
 
+  // if(isLoading) {
+  //   return
+  // }
+
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
+    <div className="rounded-lg bg-white p-4 shadow-md">
       {/* 컴팩트 헤더 */}
-      <div className=" text-gray-500 text-center mb-4">
+      <div className="mb-4 text-center text-gray-500">
         <p> Performance Analytics</p>
         <p className="text-sm">{year} Win Rate</p>
       </div>
@@ -86,11 +90,11 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
         {/* 차트 영역 */}
         <div className="shrink-0">
           {isLoading ? (
-            <div className="w-32 h-32 flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-200 border-t-blue-600"></div>
+            <div className="flex h-32 w-32 items-center justify-center">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-200 border-t-blue-600"></div>
             </div>
           ) : chartData.length > 0 ? (
-            <div className="relative w-32 h-32">
+            <div className="relative h-32 w-32">
               <ResponsiveContainer width="100%" height="100%">
                 <RechartsPieChart>
                   <Pie
@@ -113,7 +117,7 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
               </ResponsiveContainer>
 
               {/* 중앙 승률 표시 */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-xs font-bold text-gray-800">
                     {winRate}%
@@ -122,7 +126,7 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
               </div>
             </div>
           ) : (
-            <div className="w-32 h-32 flex items-center justify-center text-gray-400 bg-gray-50 rounded-full">
+            <div className="flex h-32 w-32 items-center justify-center rounded-full bg-gray-50 text-gray-400">
               <span className="text-xs">No Data</span>
             </div>
           )}
@@ -131,11 +135,11 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
         {/* 통계 정보 */}
         <div className="flex-1 space-y-2">
           <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="bg-green-50 p-2 rounded text-center">
+            <div className="rounded bg-green-50 p-2 text-center">
               <div className="font-bold text-green-600">{winRate}%</div>
               <div className="text-green-500">Win Rate</div>
             </div>
-            <div className="bg-blue-50 p-2 rounded text-center">
+            <div className="rounded bg-blue-50 p-2 text-center">
               <div className="font-bold text-blue-600">{totalMatches}</div>
               <div className="text-blue-500">Matches</div>
             </div>
@@ -147,11 +151,11 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
               {chartData.map((item, index) => (
                 <div key={index} className="flex items-center gap-2 text-xs">
                   <div
-                    className="w-2 h-2 rounded-full"
+                    className="h-2 w-2 rounded-full"
                     style={{ backgroundColor: item.color }}
                   ></div>
-                  <span className="text-gray-600 flex-1">{item.name}</span>
-                  <span className="text-gray-500 font-medium">
+                  <span className="flex-1 text-gray-600">{item.name}</span>
+                  <span className="font-medium text-gray-500">
                     {item.value}
                   </span>
                 </div>
@@ -162,15 +166,15 @@ export const PieChart = ({ data: pieData }: { data: Player }) => {
       </div>
 
       {/* 컴팩트 년도 선택 */}
-      <div className="mt-4 pt-3 border-t">
-        <div className="flex gap-1 justify-center">
+      <div className="mt-4 border-t pt-3">
+        <div className="flex justify-center gap-1">
           {Array.from({ length: 5 }, (_, i) => {
             const buttonYear = currentYear - i;
             return (
               <button
                 key={i}
                 onClick={() => setYear(buttonYear)}
-                className={`px-2 py-1 text-xs rounded transition-colors ${
+                className={`rounded px-2 py-1 text-xs transition-colors ${
                   year === buttonYear
                     ? "bg-blue-500 text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
