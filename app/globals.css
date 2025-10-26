@@ -11,7 +11,8 @@
   --color-theme-red: #e11d48;
   --color-theme-blue: #2563eb;
   --color-theme-green: #16a34a;
-  --color-theme-translucent: rgba(255, 255, 255, 0.5);
+  --color-theme-gray: #6b7280;
+  --color-theme-translucent: rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {

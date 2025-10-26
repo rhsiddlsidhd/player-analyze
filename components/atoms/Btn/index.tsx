@@ -1,16 +1,44 @@
+import { ColorKey, SizeKey, textSizes } from "@/styles/variants";
 import { AtomProps } from "@/types";
+import clsx from "clsx";
 import React from "react";
 interface BtnProps extends AtomProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   value?: string | number;
+  color?: ButtonColorkey;
+  disabled?: boolean;
+  size?: SizeKey;
+  className?: string;
 }
 
-const Btn = ({ children, onClick, value }: BtnProps) => {
+type ButtonColorkey = Extract<ColorKey, "blue" | "gray">;
+
+const buttonColorVariants: Record<ButtonColorkey, string> = {
+  blue: "bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white",
+  gray: "bg-gray-100 hover:bg-gray-200 text-theme-gray",
+};
+
+const Btn = ({
+  children,
+  onClick,
+  value,
+  disabled,
+  color = "gray",
+  size = "base",
+  className,
+}: BtnProps) => {
   return (
     <button
       onClick={onClick}
       value={value}
-      className="w-full bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      disabled={disabled}
+      className={clsx(
+        "focus:ring-blu-500 cursor-pointer rounded-md px-2 py-1 font-semibold transition-all duration-200 hover:scale-[1.02]",
+        color && buttonColorVariants[color],
+        size && textSizes[size],
+        disabled && "pointer-events-none cursor-not-allowed opacity-50",
+        className && className,
+      )}
     >
       {children}
     </button>

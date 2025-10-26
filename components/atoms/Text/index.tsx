@@ -2,6 +2,7 @@ import {
   ColorKey,
   lineClamps,
   SizeKey,
+  textBolds,
   textColors,
   textSizes,
 } from "@/styles/variants";
@@ -13,6 +14,7 @@ interface TextProps extends AtomProps {
   lineClamp?: number;
   textColor?: ColorKey;
   textSize?: SizeKey;
+  textBold?: keyof typeof textBolds;
 }
 
 const Text = ({
@@ -21,6 +23,7 @@ const Text = ({
   className,
   textColor,
   textSize,
+  textBold,
 }: TextProps) => {
   return (
     <p
@@ -28,7 +31,8 @@ const Text = ({
         className,
         lineClamp && lineClamps[lineClamp],
         textColor && textColors[textColor],
-        textSize && textSizes[textSize]
+        textSize && textSizes[textSize],
+        textBold && textBolds[textBold],
       )}
     >
       {children}

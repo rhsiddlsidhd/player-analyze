@@ -4,6 +4,7 @@ export type ColorKey =
   | "red"
   | "blue"
   | "green"
+  | "gray"
   | "translucent";
 export type SizeKey =
   | "xs"
@@ -22,15 +23,17 @@ export const textColors: Record<ColorKey, string> = {
   red: "text-theme-red",
   blue: "text-theme-blue",
   green: "text-theme-green",
+  gray: "text-theme-gray",
   translucent: "text-theme-translucent",
 };
 
 export const bgColors: Record<ColorKey, string> = {
   black: "bg-theme-black",
   white: "bg-theme-white",
-  red: "bg-theme-red",
-  blue: "bg-theme-blue",
-  green: "bg-theme-green",
+  red: "bg-red-50",
+  blue: "bg-blue-50",
+  green: "bg-green-50",
+  gray: "bg-gray-100",
   translucent: "bg-theme-translucent",
 };
 
@@ -53,3 +56,15 @@ export const textSizes: Record<SizeKey, string> = {
   "4xl": "text-4xl",
   "5xl": "text-5xl",
 };
+
+export const textBolds = {
+  100: "font-thin",
+  200: "font-extralight",
+  300: "font-light",
+  400: "font-normal",
+  500: "font-medium",
+  600: "font-semibold",
+  700: "font-bold",
+  800: "font-extrabold",
+  900: "font-black",
+} as const;
