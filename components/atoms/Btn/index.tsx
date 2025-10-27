@@ -14,8 +14,8 @@ interface BtnProps extends AtomProps {
 type ButtonColorkey = Extract<ColorKey, "blue" | "gray">;
 
 const buttonColorVariants: Record<ButtonColorkey, string> = {
-  blue: "bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white",
-  gray: "bg-gray-100 hover:bg-gray-200 text-theme-gray",
+  blue: "bg-linear-to-r from-blue-500 to-indigo-600  text-white",
+  gray: "bg-gray-100  text-theme-gray",
 };
 
 const Btn = ({
@@ -33,7 +33,7 @@ const Btn = ({
       value={value}
       disabled={disabled}
       className={clsx(
-        "focus:ring-blu-500 cursor-pointer rounded-md px-2 py-1 font-semibold transition-all duration-200 hover:scale-[1.02]",
+        "cursor-pointer rounded-md px-2 py-1 font-semibold transition-all duration-200 hover:scale-[1.05]",
         color && buttonColorVariants[color],
         size && textSizes[size],
         disabled && "pointer-events-none cursor-not-allowed opacity-50",

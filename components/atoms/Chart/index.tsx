@@ -1,12 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import {
+  Bar,
   Cell,
   Pie,
   PieChart as RechartsPieChart,
+  ComposedChart as RechartsComposedChart,
   ResponsiveContainer,
   Tooltip,
+  TooltipContentProps,
 } from "recharts";
 
 export const PieChart = ({
@@ -16,8 +19,10 @@ export const PieChart = ({
 }) => {
   const [onHover, setOnHover] = useState<boolean>(false);
 
-  const renderTooltip = (props: any) => {
-    const { active, payload } = props;
+  const renderTooltip = ({
+    active,
+    payload,
+  }: TooltipContentProps<string | number, string>) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
@@ -36,7 +41,7 @@ export const PieChart = ({
 
   return (
     <div
-      className="relative h-32 w-32"
+      className="relative h-full w-full"
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
     >
@@ -69,5 +74,13 @@ export const PieChart = ({
         <div className="text-xs font-bold text-gray-800">{winRate}%</div>
       </div>
     </div>
+  );
+};
+
+export const ComposedChart = () => {
+  return (
+    <RechartsComposedChart>
+      <Bar />
+    </RechartsComposedChart>
   );
 };

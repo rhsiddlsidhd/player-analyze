@@ -4,22 +4,15 @@ import { FreeMode, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
-import Btn from "@/components/atoms/Btn";
+
 import Text from "@/components/atoms/Text";
-
 import { Player } from "@/types";
-
 import Avatar from "@/components/molecules/Avatar";
-import { useMemo } from "react";
-import { useRouter } from "next/navigation";
 import Badge from "@/components/atoms/Badge";
-import useWikidataImage from "@/hooks/useWikidataImage";
 import InfoItem from "@/components/molecules/InfoItem";
-import { it } from "node:test";
+import LinkBtn from "@/components/molecules/LinkBtn";
 
 const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
-  const navigate = useRouter();
-
   return (
     <Swiper
       modules={[FreeMode, Scrollbar]}
@@ -31,7 +24,7 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
         hide: false,
       }}
       style={{
-        padding: "2rem 0",
+        paddingBottom: "2rem",
       }}
     >
       {playerData.map((item, i) => (
@@ -77,13 +70,11 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
               />
             </div>
 
-            <Btn
-              onClick={() => navigate.push(`/dashboard/${item.player_id}`)}
-              color="blue"
+            <LinkBtn
               size="sm"
-            >
-              더보기
-            </Btn>
+              path={`/dashboard/${item.player_id}`}
+              label="더보기"
+            />
           </div>
         </SwiperSlide>
       ))}

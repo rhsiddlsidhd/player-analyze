@@ -33,7 +33,7 @@ export const bgColors: Record<ColorKey, string> = {
   red: "bg-red-50",
   blue: "bg-blue-50",
   green: "bg-green-50",
-  gray: "bg-gray-100",
+  gray: "bg-gray-50",
   translucent: "bg-theme-translucent",
 };
 

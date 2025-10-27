@@ -1,16 +1,15 @@
 import PlayerBoard from "@/components/organisms/PlayerBoard";
-import React from "react";
-interface PageProps {
-  params: { id: string };
-}
+import PlayerDetailBoard from "@/components/organisms/PlayerDetailBoard";
 
-const page = async ({ params }: PageProps) => {
-  console.log("Dashboard page params object:", params);
-  const { id } = await params;
+type Params = Promise<{ id: string }>;
+
+const page = async (props: { params: Params }) => {
+  const { id } = await props.params;
 
   return (
     <div>
       <PlayerBoard id={id} />
+      <PlayerDetailBoard id={id} />
     </div>
   );
 };

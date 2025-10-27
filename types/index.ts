@@ -79,3 +79,15 @@ export class HttpError extends Error {
     this.status = status;
   }
 }
+
+interface ApiResponseSuccess<T> {
+  success: true;
+  data: T;
+}
+
+interface ApiResponseFailure {
+  success: false;
+  message: string;
+}
+
+export type ApiResponse<T> = ApiResponseSuccess<T> | ApiResponseFailure;
