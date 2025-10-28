@@ -194,11 +194,13 @@ const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
       <div className="grid grid-cols-2 max-sm:grid-cols-1">
         <div className="aspect-square max-h-28 w-full shrink-0">
           {isLoading ? (
-            <Spinner />
+            <div className="flex h-full w-full items-center justify-center">
+              <Spinner />
+            </div>
           ) : chartData.length > 0 ? (
             <PieChart data={chartData} />
           ) : (
-            <div className="flex h-full w-full items-center justify-center rounded-full bg-gray-50 text-gray-400">
+            <div className="flex h-full w-full items-center justify-center text-gray-400">
               <span className="text-xs">No Data</span>
             </div>
           )}
