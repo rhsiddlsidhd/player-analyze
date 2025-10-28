@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Text from "@/components/atoms/Text";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,33 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div
+          className="bg-blue-600 px-6 py-12 text-white"
+          style={{
+            background: "linear-gradient(to right, #2563eb, #7c3aed, #4f46e5)",
+          }}
+        >
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center">
+              <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+                ATP Player Analytics
+              </h1>
+              <p className="mx-auto max-w-2xl text-xl text-blue-100">
+                실시간 ATP 선수 분석과 토너먼트 통계를 확인하세요
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto min-h-screen w-full max-w-5xl bg-slate-100 px-4 py-6">
+          {children}
+        </div>
+        <footer className="w-full bg-gray-900 px-6 py-8 text-white">
+          <div className="mx-auto max-w-7xl text-center">
+            <Text textColor="gray">
+              © 2025 SHIN YOUNG JAE. All rights reserved.
+            </Text>
+          </div>
+        </footer>
       </body>
     </html>
   );

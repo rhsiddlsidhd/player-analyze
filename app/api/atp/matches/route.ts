@@ -39,14 +39,7 @@ export const GET = async (request: NextRequest) => {
     const years = yearParam.split(",").map((y) => y.trim());
 
     const user = request.nextUrl.searchParams.get("u");
-    console.log(
-      "year",
-      years,
-      "user",
-      user,
-      "tournamentParam",
-      tournamentParam,
-    );
+
     const allMatches = years.reduce((acc, year) => {
       const dataPath = path.join(basePath, `atp_matches_${year}.json`);
       const matches: Match[] = JSON.parse(fs.readFileSync(dataPath, "utf-8"));

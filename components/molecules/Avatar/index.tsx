@@ -18,10 +18,10 @@ const avatarSizes: Record<SizeKey, string> = {
 };
 
 const Avatar = ({
-  wikidata_id,
+  wikidata_id = "",
   size,
 }: {
-  wikidata_id: string;
+  wikidata_id?: string;
   size?: SizeKey;
 }) => {
   const { data, isLoading } = useWikidataImage(wikidata_id);
@@ -33,7 +33,7 @@ const Avatar = ({
   return (
     <div
       className={clsx(
-        "relative aspect-square overflow-hidden rounded-full border-2",
+        "relative aspect-square overflow-hidden rounded-full",
         size ? avatarSizes[size] : "w-24",
       )}
     >

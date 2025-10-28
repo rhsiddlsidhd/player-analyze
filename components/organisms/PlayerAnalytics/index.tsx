@@ -299,7 +299,7 @@ const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
       </div>
 
       {/* 컴팩트 년도 선택 */}
-      <div className="mt-4 border-t pt-3">
+      <div className="mt-2 border-t border-t-gray-200 py-2">
         <div className="flex w-full flex-wrap items-center justify-center gap-1">
           {Array.from({ length: 5 }, (_, i) => {
             const buttonYear = currentYear - i;

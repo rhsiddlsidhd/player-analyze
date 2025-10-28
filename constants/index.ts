@@ -1,13 +1,11 @@
 export const TOURNAMENT_LEVELS = {
   G: "Grand Slam",
   M: "Masters 1000",
-  A: "ATP 500",
-  B: "ATP 250",
-  C: "Challenger",
-  F: "Future",
+  A: "ATP 500/250",
+  F: "Tour Finals",
   D: "Davis Cup",
   O: "Olympics",
-};
+} as const;
 
 export const TOURNAMENT_ROUND_SORT = [
   "F",
@@ -17,4 +15,4 @@ export const TOURNAMENT_ROUND_SORT = [
   "R32",
   "R64",
   "R128",
-];
+] as const;

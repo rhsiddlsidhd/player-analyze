@@ -7,6 +7,7 @@ import Board from "@/components/template/Board";
 import { TOURNAMENT_ROUND_SORT } from "@/constants";
 import { fetcher } from "@/lib/swr";
 import { ApiResponse, Match } from "@/types";
+import Link from "next/link";
 import React, { useEffect, useMemo } from "react";
 import useSWR from "swr";
 
@@ -31,6 +32,7 @@ const TournamentSchedule = ({
         TOURNAMENT_ROUND_SORT.indexOf(b.round),
     );
   }, [data, year]);
+
   return (
     <Board>
       <div className="flex items-center justify-between">
@@ -51,9 +53,14 @@ const TournamentSchedule = ({
         ) : (
           sortedMatches.map((match, i) => (
             <li key={i} className="border-b border-gray-200 py-2">
-              <Text textSize="sm" lineClamp={1}>
-                {match.winner_name} vs {match.loser_name} - {match.round}
-              </Text>
+              <Link
+                href={`/match/${match.match_num}?t=${tournament}&y=${year}`}
+              >
+                {/* match_num 을 전달 */}
+                <Text textSize="sm" lineClamp={1}>
+                  {match.winner_name} vs {match.loser_name} - {match.round}
+                </Text>
+              </Link>
             </li>
           ))
         )}

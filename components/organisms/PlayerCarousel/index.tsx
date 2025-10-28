@@ -21,7 +21,6 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
       freeMode={true}
       scrollbar={{
         draggable: true,
-        hide: false,
       }}
       style={{
         paddingBottom: "2rem",
