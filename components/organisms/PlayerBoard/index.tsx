@@ -11,6 +11,7 @@ const PlayerBoard = ({ id }: { id: string }) => {
   return (
     <div>
       {singlePlayer && (
+        //
         <div className="max-md:space-y-4 md:flex md:items-stretch md:justify-between md:gap-4">
           <Board>
             <div className="flex justify-between">
@@ -19,10 +20,10 @@ const PlayerBoard = ({ id }: { id: string }) => {
               </Text>
               <LinkBtn path={`/dashboard/${id}`} label="더보기" />
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1 max-sm:flex-col">
               <Avatar wikidata_id={singlePlayer.wikidata_id ?? ""} size="2xl" />
 
-              <div className="flex-1 space-y-2">
+              <div className="w-full flex-1 space-y-2">
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   <InfoItem label="Born" value={singlePlayer.dob} />
                   <InfoItem label="Country" value={singlePlayer.ioc} />

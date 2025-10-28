@@ -14,7 +14,7 @@ const InfoItem = ({
       <Text textSize="xs" textColor="gray">
         {label}
       </Text>
-      <Text textSize="sm" textColor="black">
+      <Text textSize="sm" textColor="black" lineClamp={1}>
         {value}
       </Text>
     </Label>

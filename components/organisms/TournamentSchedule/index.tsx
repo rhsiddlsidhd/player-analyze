@@ -37,7 +37,7 @@ const TournamentSchedule = ({
         <Text textColor="gray" lineClamp={1}>
           {tournament} for {year}
         </Text>
-        <LinkBtn label="더보기" path="#" />
+        <LinkBtn label="더보기" path="#" size="xs" />
       </div>
       <ul className="text-theme-black mt-4 h-64 overflow-scroll overflow-x-hidden">
         {isLoading ? (

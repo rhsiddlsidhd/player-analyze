@@ -191,8 +191,8 @@ const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
         <Text textSize="sm">{year} Win Rate</Text>
       </div>
 
-      <div className="flex items-center">
-        <div className="h-32 min-h-0 w-32 min-w-0 shrink-0">
+      <div className="grid grid-cols-2 max-sm:grid-cols-1">
+        <div className="aspect-square max-h-28 w-full shrink-0">
           {isLoading ? (
             <Spinner />
           ) : chartData.length > 0 ? (
@@ -298,7 +298,7 @@ const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
 
       {/* 컴팩트 년도 선택 */}
       <div className="mt-4 border-t pt-3">
-        <div className="m-auto w-fit space-x-2">
+        <div className="flex w-full flex-wrap items-center justify-center gap-1">
           {Array.from({ length: 5 }, (_, i) => {
             const buttonYear = currentYear - i;
             return (
