@@ -1,11 +1,13 @@
 import PlayerBoard from "@/components/organisms/PlayerBoard";
 import PlayerCarousel from "@/components/organisms/PlayerCarousel";
+import TournamentSchedule from "@/components/organisms/TournamentSchedule";
 
 import { currentTop10Players } from "@/models/ATPCurrentRankingPlayers";
 import playerMap from "@/models/ATPTourPlayers";
 
 export default async function Home() {
   const id = `104925`;
+  const currentYear = 2024;
   const singlePlayer = playerMap.get(id);
 
   return (
@@ -16,9 +18,12 @@ export default async function Home() {
         {singlePlayer?.name_first} {singlePlayer?.name_last} DashBoard Overview
       </h1>
       <PlayerBoard id={id} />
-      <h1 className="text-2xl font-bold">
-        년도 별 Australian Open 결승 & 준결승 & 8강 순위
-      </h1>
+      <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+        <TournamentSchedule year={currentYear} tournament="Australian Open" />
+        <TournamentSchedule year={currentYear} tournament="Wimbledon" />
+        <TournamentSchedule year={currentYear} tournament="Us Open" />
+        <TournamentSchedule year={currentYear} tournament="Roland Garros" />
+      </div>
     </div>
   );
 }

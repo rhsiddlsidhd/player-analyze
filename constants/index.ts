@@ -8,3 +8,13 @@ export const TOURNAMENT_LEVELS = {
   D: "Davis Cup",
   O: "Olympics",
 };
+
+export const TOURNAMENT_ROUND_SORT = [
+  "F",
+  "SF",
+  "QF",
+  "R16",
+  "R32",
+  "R64",
+  "R128",
+];
