@@ -10,7 +10,6 @@ import { PieChart } from "@/components/atoms/Chart";
 import AnalyticsItem from "@/components/molecules/AnalyicsItem";
 import Btn from "@/components/atoms/Btn";
 import { TOURNAMENT_LEVELS } from "@/constants";
-import Board from "@/components/template/Board";
 
 const PlayerDetailsAnalytics = ({
   levelStats,
@@ -191,8 +190,8 @@ const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
         <Text textSize="sm">{year} Win Rate</Text>
       </div>
 
-      <div className="grid grid-cols-2 max-sm:grid-cols-1">
-        <div className="aspect-square max-h-28 w-full shrink-0">
+      <div className="grid grid-cols-2 border-4 border-blue-500 max-sm:grid-cols-1">
+        <div className="relative aspect-square max-h-28 w-full shrink-0">
           {isLoading ? (
             <div className="flex h-full w-full items-center justify-center">
               <Spinner />
@@ -233,68 +232,70 @@ const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
               Surface
             </Btn>
           </div>
-
-          {chartData.length > 0 && (
-            <div className="space-y-1">
-              {chartData.map((item, index) => (
-                <div key={index}>
-                  <div className="flex items-center gap-2 text-xs">
-                    <div
-                      className="h-2 w-2 rounded-full"
-                      style={{ backgroundColor: item.color }}
-                    />
-                    <span className="flex-1 text-gray-600">{item.name}</span>
-                    <span className="font-medium text-gray-500">
-                      {item.value}
-                    </span>
-                    {/* 토글 버튼 */}
-                    <button
-                      onClick={() =>
-                        setExpandedItem(
-                          expandedItem === item.name ? null : item.name,
-                        )
-                      }
-                      className="ml-1 flex h-4 w-4 items-center justify-center rounded text-gray-400 transition-all hover:bg-gray-100 hover:text-gray-600"
-                    >
-                      <svg
-                        className={`h-3 w-3 transition-transform duration-200 ${
-                          expandedItem === item.name ? "rotate-180" : ""
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+          {/*  */}
+          <div className="min-h-10 w-full border-2 border-red-500">
+            {chartData.length > 0 && (
+              <div className="space-y-1">
+                {chartData.map((item, index) => (
+                  <div key={index}>
+                    <div className="flex items-center gap-2 text-xs">
+                      <div
+                        className="h-2 w-2 rounded-full"
+                        style={{ backgroundColor: item.color }}
+                      />
+                      <span className="flex-1 text-gray-600">{item.name}</span>
+                      <span className="font-medium text-gray-500">
+                        {item.value}
+                      </span>
+                      {/* 토글 버튼 */}
+                      <button
+                        onClick={() =>
+                          setExpandedItem(
+                            expandedItem === item.name ? null : item.name,
+                          )
+                        }
+                        className="ml-1 flex h-4 w-4 items-center justify-center rounded text-gray-400 transition-all hover:bg-gray-100 hover:text-gray-600"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                        <svg
+                          className={`h-3 w-3 transition-transform duration-200 ${
+                            expandedItem === item.name ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                    </div>
 
-                  <div
-                    className="grid transition-all duration-300 ease-in-out"
-                    style={{
-                      gridTemplateRows:
-                        expandedItem === item.name ? "1fr" : "0fr",
-                    }}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="pt-1">
-                        <PlayerDetailsAnalytics
-                          levelStats={item.levelStats}
-                          surfaceStats={item.surfaceStats}
-                          type={detailType}
-                        />
+                    <div
+                      className="grid transition-all duration-300 ease-in-out"
+                      style={{
+                        gridTemplateRows:
+                          expandedItem === item.name ? "1fr" : "0fr",
+                      }}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="pt-1">
+                          <PlayerDetailsAnalytics
+                            levelStats={item.levelStats}
+                            surfaceStats={item.surfaceStats}
+                            type={detailType}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

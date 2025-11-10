@@ -41,7 +41,7 @@ const TournamentSchedule = ({
         </Text>
         <LinkBtn label="더보기" path="#" size="xs" />
       </div>
-      <ul className="text-theme-black mt-4 h-64 overflow-scroll overflow-x-hidden">
+      <ul className="text-theme-black relative mt-4 h-64 overflow-scroll overflow-x-hidden border-2 border-red-500">
         {isLoading ? (
           <li className="flex h-full items-center justify-center">
             <Spinner />

@@ -6,21 +6,20 @@ import playerMap from "@/models/ATPTourPlayers";
 import PlayerAnalytics from "../PlayerAnalytics";
 import LinkBtn from "@/components/molecules/LinkBtn";
 
-const PlayerBoard = ({ id }: { id: string }) => {
+const PlayerBoard = ({ id, home }: { id: string; home?: boolean }) => {
   const singlePlayer = playerMap.get(id);
   return (
     <div>
       {singlePlayer && (
-        //
         <div className="max-md:space-y-4 md:flex md:items-stretch md:justify-between md:gap-4">
           <Board>
             <div className="flex justify-between">
               <Text textColor="black" textSize="xl" textBold={600}>
                 {singlePlayer.name_first} {singlePlayer.name_last}
               </Text>
-              <LinkBtn path={`/dashboard/${id}`} label="더보기" />
+              {home && <LinkBtn path={`/dashboard/${id}`} label="더보기" />}
             </div>
-            <div className="flex items-center gap-1 max-sm:flex-col">
+            <div className="flex items-center gap-1 p-2 max-sm:flex-col">
               <Avatar wikidata_id={singlePlayer.wikidata_id ?? ""} size="2xl" />
 
               <div className="w-full flex-1 space-y-2">

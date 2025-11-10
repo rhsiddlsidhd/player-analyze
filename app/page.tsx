@@ -30,7 +30,7 @@ export default async function Home() {
           </Text>
           <Text textColor="gray">선수 상세 분석 및 성과 리포트</Text>
         </div>
-        <PlayerBoard id={id} />
+        <PlayerBoard id={id} home />
       </section>
 
       {/* Grand Slam Tournaments */}

@@ -26,9 +26,9 @@ const Avatar = ({
 }) => {
   const { data, isLoading } = useWikidataImage(wikidata_id);
 
-  if (isLoading || !data) {
-    return <Spinner />;
-  }
+  // if (isLoading || !data) {
+  //   return <Spinner />;
+  // }
 
   return (
     <div
@@ -37,15 +37,19 @@ const Avatar = ({
         size ? avatarSizes[size] : "w-24",
       )}
     >
-      <Img
-        src={
-          data.image
-            ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(
-                data.image,
-              )}`
-            : ""
-        }
-      />
+      {isLoading || !data ? (
+        <Spinner />
+      ) : (
+        <Img
+          src={
+            data.image
+              ? `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(
+                  data.image,
+                )}`
+              : ""
+          }
+        />
+      )}
     </div>
   );
 };

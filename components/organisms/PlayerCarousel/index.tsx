@@ -47,7 +47,7 @@ const PlayerCarousel = ({ data: playerData }: { data: Player[] }) => {
             </div>
           </div>
 
-          <div className="flex justify-center bg-gray-50 p-2">
+          <div className="flex justify-center border-4 border-red-500 bg-gray-50 p-2">
             <Avatar wikidata_id={item.wikidata_id ?? ""} />
           </div>
 
