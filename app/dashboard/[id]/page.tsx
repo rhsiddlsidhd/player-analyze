@@ -7,7 +7,7 @@ const page = async (props: { params: Params }) => {
   const { id } = await props.params;
 
   return (
-    <div>
+    <div className="space-y-4">
       <PlayerBoard id={id} />
       <PlayerDetailBoard id={id} />
     </div>

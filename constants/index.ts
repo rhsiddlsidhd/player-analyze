@@ -16,3 +16,5 @@ export const TOURNAMENT_ROUND_SORT = [
   "R64",
   "R128",
 ] as const;
+
+export const CURRENTYEAR = 2024;

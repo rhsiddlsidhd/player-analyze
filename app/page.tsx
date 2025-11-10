@@ -2,12 +2,12 @@ import Text from "@/components/atoms/Text";
 import PlayerBoard from "@/components/organisms/PlayerBoard";
 import PlayerCarousel from "@/components/organisms/PlayerCarousel";
 import TournamentSchedule from "@/components/organisms/TournamentSchedule";
+import { CURRENTYEAR } from "@/constants";
 
 import { currentTop10Players } from "@/models/ATPCurrentRankingPlayers";
 
 export default async function Home() {
   const id = `104925`;
-  const currentYear = 2024;
 
   return (
     <div className="w-full space-y-12">
@@ -39,13 +39,13 @@ export default async function Home() {
           <Text textSize="3xl" textBold={900} textColor="black">
             Grand Slam Tournaments
           </Text>
-          <Text textColor="gray">{currentYear}년 4대 메이저 토너먼트 일정</Text>
+          <Text textColor="gray">{CURRENTYEAR}년 4대 메이저 토너먼트 일정</Text>
         </div>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <TournamentSchedule year={currentYear} tournament="Australian Open" />
-          <TournamentSchedule year={currentYear} tournament="Wimbledon" />
-          <TournamentSchedule year={currentYear} tournament="Us Open" />
-          <TournamentSchedule year={currentYear} tournament="Roland Garros" />
+          <TournamentSchedule year={CURRENTYEAR} tournament="Australian Open" />
+          <TournamentSchedule year={CURRENTYEAR} tournament="Wimbledon" />
+          <TournamentSchedule year={CURRENTYEAR} tournament="Us Open" />
+          <TournamentSchedule year={CURRENTYEAR} tournament="Roland Garros" />
         </div>
       </section>
     </div>

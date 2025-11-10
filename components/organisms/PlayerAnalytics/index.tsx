@@ -9,7 +9,7 @@ import Text from "@/components/atoms/Text";
 import { PieChart } from "@/components/atoms/Chart";
 import AnalyticsItem from "@/components/molecules/AnalyicsItem";
 import Btn from "@/components/atoms/Btn";
-import { TOURNAMENT_LEVELS } from "@/constants";
+import { CURRENTYEAR, TOURNAMENT_LEVELS } from "@/constants";
 
 const PlayerDetailsAnalytics = ({
   levelStats,
@@ -106,8 +106,7 @@ const getSurfaceName = (surface: string): string => {
 };
 
 const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
-  const currentYear = 2024;
-  const [year, setYear] = useState<number>(currentYear);
+  const [year, setYear] = useState<number>(CURRENTYEAR);
   const [detailType, setDetailType] = useState<"level" | "surface">("level");
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
@@ -303,7 +302,7 @@ const PlayerAnalytics = ({ data: pieData }: { data: Player }) => {
       <div className="mt-2 border-t border-t-gray-200 py-2">
         <div className="flex w-full flex-wrap items-center justify-center gap-1">
           {Array.from({ length: 5 }, (_, i) => {
-            const buttonYear = currentYear - i;
+            const buttonYear = CURRENTYEAR - i;
             return (
               <Btn
                 key={i}

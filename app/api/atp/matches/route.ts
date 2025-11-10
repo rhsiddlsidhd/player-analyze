@@ -37,7 +37,6 @@ export const GET = async (request: NextRequest) => {
 
     // 1. 연도 배열로 만들기
     const years = yearParam.split(",").map((y) => y.trim());
-
     const user = request.nextUrl.searchParams.get("u");
 
     const allMatches = years.reduce((acc, year) => {
